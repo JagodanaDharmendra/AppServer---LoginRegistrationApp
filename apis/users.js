@@ -87,4 +87,13 @@ router.get("/login", async function (req, res, next) {
     });
   }
 });
+
+router.put("/forgot-password", async function (req, res, next) {
+  res.json({
+    success: true,
+    result:
+      "Password reset link sent to provided email. Please follow instruction and the try to login",
+  });
+});
+
 module.exports = router;
