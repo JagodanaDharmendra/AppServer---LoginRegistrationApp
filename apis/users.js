@@ -61,4 +61,30 @@ router.put("/create", async function (req, res, next) {
   }
 });
 
+router.get("/login", async function (req, res, next) {
+  try {
+    // console.log(req);
+    const result = await db
+      .collection(COLLECTION_NAME)
+      .find({ email: req.query.email, pwd: req.query.pwd })
+      .toArray();
+
+    if (result.length == 1) {
+      res.json({
+        success: true,
+        message: "Login Successful",
+      });
+    } else {
+      res.json({
+        success: false,
+        message: "User Name or Password is wrong",
+      });
+    }
+  } catch (e) {
+    res.json({
+      success: false,
+      result: "User Name or Password is wrong",
+    });
+  }
+});
 module.exports = router;
